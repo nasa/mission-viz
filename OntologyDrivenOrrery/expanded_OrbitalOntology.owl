@@ -1,0 +1,170 @@
+[ {
+  "@id" : "http://www.semanticweb.org/daoneil/ontologies/2016/7/untitled-ontology-34",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ],
+  "http://www.w3.org/2002/07/owl#imports" : [ {
+    "@id" : "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/daoneil/ontologies/2016/7/untitled-ontology-34#Earth_Orbit",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://www.semanticweb.org/rrovetto/ontologies/2014/ssao#Helio-Centric_Orbit" ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Argument_of_Periapsis" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "100.47"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Eccentric_Anomaly" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "1"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Mean_Anomaly" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "100.47"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_RAAN" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "-11.26064"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Semi-major_Axis" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "1.00000011"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_name" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#Name",
+    "@value" : "Earth_Orbit"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_orbital_eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.01671022"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_orbital_inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.00005"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/daoneil/ontologies/2016/7/untitled-ontology-34#Mars_Orbit",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://www.semanticweb.org/rrovetto/ontologies/2014/ssao#Helio-Centric_Orbit" ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Argument_of_Periapsis" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "336.04084084"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Eccentric_Anomaly" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "1.881"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Mean_Anomaly" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "355.43"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_RAAN" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "49.57854"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Semi-major_Axis" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "1.5236623"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_name" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#Name",
+    "@value" : "Mars_orbit"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_orbital_eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.09341233"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_orbital_inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "1.85061"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/daoneil/ontologies/2016/7/untitled-ontology-34#Mercury_Orbit",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://www.semanticweb.org/rrovetto/ontologies/2014/ssao#Helio-Centric_Orbit" ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Argument_of_Periapsis" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "77.46"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Eccentric_Anomaly" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.240846"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Mean_Anomaly" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "252.25"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_RAAN" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "48.33167"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Semi-major_Axis" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.38709893"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_name" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#Name",
+    "@value" : "Mercury_Orbit"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_orbital_eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.20563069"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_orbital_inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "7.00487"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/daoneil/ontologies/2016/7/untitled-ontology-34#Venus_Orbit",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://www.semanticweb.org/rrovetto/ontologies/2014/ssao#Helio-Centric_Orbit" ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Argument_of_Periapsis" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "131.77"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Eccentric_Anomaly" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.615"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Mean_Anomaly" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "181.98"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_RAAN" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "76.68069"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Semi-major_Axis" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.72333199"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_name" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#Name",
+    "@value" : "Venus_Orbit"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_orbital_eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.00677323"
+  } ],
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_orbital_inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "3.39471"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Argument_of_Periapsis",
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/ssao#Reference_Source" : [ {
+    "@value" : "http://farside.ph.utexas.edu/teaching/celestial/Celestial/node34.html"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Mean_Anomaly",
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/ssao#Reference_Source" : [ {
+    "@value" : "http://farside.ph.utexas.edu/teaching/celestial/Celestial/node34.html"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Mean Anomoly at Epoch"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Semi-major_Axis",
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Value in Astronomical Units"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_orbital_inclination",
+  "http://www.semanticweb.org/rrovetto/ontologies/2014/ssao#Reference_Source" : [ {
+    "@value" : "http://www.met.rdg.ac.uk/~ross/Astronomy/Planets.html"
+  } ]
+} ]

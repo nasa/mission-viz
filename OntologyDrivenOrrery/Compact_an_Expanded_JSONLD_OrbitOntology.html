@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Accessing JSON-LD Demo</title>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jsonld/0.3.15/jsonld.js"></script>
+
+</head>
+
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+
+        // get the contents of the element with id="datablock1"
+		//var data = $("#datablock1").html();
+		
+		$.getJSON('expanded_OrbitalOntology.owl', function (data) {
+		
+		var context = {
+		  "HelioCentricOrbit": "http://www.semanticweb.org/rrovetto/ontologies/2014/ssao#Helio-Centric_Orbit",
+		  "CelestialEntity": "http://www.w3.org/2002/07/owl#NamedIndividual",
+		  "Name": "http://www.w3.org/2001/XMLSchema#Name",
+		  "name": "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_name",
+		  "semiMajorAxis":   "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Semi-major_Axis",
+		  "eccentricity":   "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_orbital_eccentricity",
+		  "inclination": "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_orbital_inclination",
+		  "meanAnomoly": "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Mean_Anomaly",
+		  "argPerigee": "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Argument_of_Periapsis",
+		  "sidereal": "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Eccentric_Anomaly",
+		  "raan":   "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_RAAN",
+		  "semiMajorAxis": "http://www.semanticweb.org/rrovetto/ontologies/2014/space-situational-awareness-ontology#has_Semi-major_Axis",
+		  "double" : "http://www.w3.org/2001/XMLSchema#double",
+		  "decimal" : "http://www.w3.org/2001/XMLSchema#decimal",
+		  "graph": "@graph",
+		  "type": "@type",
+		  "value": "@value"
+		 };
+		
+		jsonld.compact(data, context, function(err, compacted) {
+       console.log(JSON.stringify(compacted, null, 2));
+    $( ".container" ).append("<pre> " + JSON.stringify(compacted, null, 2) + "</pre>");
+     });
+}) ;
+
+	</script>
+
+	<div class="container"></div>
+</body>
+</html>
