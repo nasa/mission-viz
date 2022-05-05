@@ -1,0 +1,361 @@
+[ {
+  "@id" : "http://example.org/demo#Earth",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://example.org/demo#Orbit" ],
+  "http://example.org/demo#eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.016708"
+  } ],
+  "http://example.org/demo#inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "7.155"
+  } ],
+  "http://example.org/demo#omega" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "-11.26064"
+  } ],
+  "http://example.org/demo#period" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "365.256363"
+  } ],
+  "http://example.org/demo#raan" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "23.4392811"
+  } ],
+  "http://example.org/demo#sma" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "1"
+  } ],
+  "http://example.org/demo#tau" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "114.20783"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Earth"
+  } ]
+}, {
+  "@id" : "http://example.org/demo#Jupiter",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://example.org/demo#Orbit" ],
+  "http://example.org/demo#eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.0489"
+  } ],
+  "http://example.org/demo#inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "6.09"
+  } ],
+  "http://example.org/demo#omega" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "100.464"
+  } ],
+  "http://example.org/demo#period" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "4332.59"
+  } ],
+  "http://example.org/demo#raan" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "268.057"
+  } ],
+  "http://example.org/demo#sma" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "5.2044"
+  } ],
+  "http://example.org/demo#tau" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "273.867"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Jupiter"
+  } ]
+}, {
+  "@id" : "http://example.org/demo#Mars",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://example.org/demo#Orbit" ],
+  "http://example.org/demo#eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.0934"
+  } ],
+  "http://example.org/demo#inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "5.65"
+  } ],
+  "http://example.org/demo#omega" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "49.558"
+  } ],
+  "http://example.org/demo#period" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "686.971"
+  } ],
+  "http://example.org/demo#raan" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "317.68143"
+  } ],
+  "http://example.org/demo#sma" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "1.523679"
+  } ],
+  "http://example.org/demo#tau" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "286.502"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Mars"
+  } ]
+}, {
+  "@id" : "http://example.org/demo#Mercury",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://example.org/demo#Orbit" ],
+  "http://example.org/demo#eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.20563"
+  } ],
+  "http://example.org/demo#inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "3.38"
+  } ],
+  "http://example.org/demo#omega" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "48.331"
+  } ],
+  "http://example.org/demo#period" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "88"
+  } ],
+  "http://example.org/demo#raan" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "281.01"
+  } ],
+  "http://example.org/demo#sma" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.387098"
+  } ],
+  "http://example.org/demo#tau" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "29.124"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Mercury"
+  } ]
+}, {
+  "@id" : "http://example.org/demo#Neptune",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://example.org/demo#Orbit" ],
+  "http://example.org/demo#eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.009456"
+  } ],
+  "http://example.org/demo#inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "6.43"
+  } ],
+  "http://example.org/demo#omega" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "131.784"
+  } ],
+  "http://example.org/demo#period" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "60,182"
+  } ],
+  "http://example.org/demo#raan" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "299.3"
+  } ],
+  "http://example.org/demo#sma" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "30.110387"
+  } ],
+  "http://example.org/demo#tau" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "276.336"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Neptune"
+  } ]
+}, {
+  "@id" : "http://example.org/demo#Orbit",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "http://example.org/demo#Pluto",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://example.org/demo#Orbit" ],
+  "http://example.org/demo#eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.2488"
+  } ],
+  "http://example.org/demo#inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "11.88"
+  } ],
+  "http://example.org/demo#omega" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "110.299"
+  } ],
+  "http://example.org/demo#period" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "90560"
+  } ],
+  "http://example.org/demo#raan" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "132.993"
+  } ],
+  "http://example.org/demo#sma" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "39.48"
+  } ],
+  "http://example.org/demo#tau" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "113.834"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Pluto"
+  } ]
+}, {
+  "@id" : "http://example.org/demo#Saturn",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://example.org/demo#Orbit" ],
+  "http://example.org/demo#eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.0565"
+  } ],
+  "http://example.org/demo#inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "5.51"
+  } ],
+  "http://example.org/demo#omega" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "113.665"
+  } ],
+  "http://example.org/demo#period" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "10759.22"
+  } ],
+  "http://example.org/demo#raan" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "40.589"
+  } ],
+  "http://example.org/demo#sma" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "9.5826"
+  } ],
+  "http://example.org/demo#tau" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "339.392"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Saturn"
+  } ]
+}, {
+  "@id" : "http://example.org/demo#Uranus",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://example.org/demo#Orbit" ],
+  "http://example.org/demo#eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.046381"
+  } ],
+  "http://example.org/demo#inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "6.48"
+  } ],
+  "http://example.org/demo#omega" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "74.006"
+  } ],
+  "http://example.org/demo#period" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "30688.5"
+  } ],
+  "http://example.org/demo#raan" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "257.311"
+  } ],
+  "http://example.org/demo#sma" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "19.2184"
+  } ],
+  "http://example.org/demo#tau" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "96.998857"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Uranus"
+  } ]
+}, {
+  "@id" : "http://example.org/demo#Venus",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://example.org/demo#Orbit" ],
+  "http://example.org/demo#eccentricity" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.006772"
+  } ],
+  "http://example.org/demo#inclination" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "3.86"
+  } ],
+  "http://example.org/demo#omega" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "76.68"
+  } ],
+  "http://example.org/demo#period" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "224.701"
+  } ],
+  "http://example.org/demo#raan" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "272.76"
+  } ],
+  "http://example.org/demo#sma" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.723332"
+  } ],
+  "http://example.org/demo#tau" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "54.884"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Venus"
+  } ]
+}, {
+  "@id" : "http://example.org/demo#eccentricity",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Eccentricity is a ratio of the minor axis and major axis, which measures the difference between the ellipse and a circle."
+  } ]
+}, {
+  "@id" : "http://example.org/demo#inclination",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Inclination provides a pitch angle for an elliptical orbit.  Measured in degrees."
+  } ]
+}, {
+  "@id" : "http://example.org/demo#omega",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Longitude of ascending node provides a yaw angle for an elliptical orbit.  Measured in degrees."
+  } ]
+}, {
+  "@id" : "http://example.org/demo#period",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Orbital period is the time it takes for the orbiting body to travel around the ellipse.  Measured in days."
+  } ]
+}, {
+  "@id" : "http://example.org/demo#raan",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Right Ascension of Ascending Node (RAAN) serves as the roll angle for an elliptical orbit.  Use the right ascension of the planet's North pole.  Measured in degrees."
+  } ]
+}, {
+  "@id" : "http://example.org/demo#sma",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Semi-Major Axis is one half the distance across the longest distance in an ellipse.  Measured in astronomical units."
+  } ]
+}, {
+  "@id" : "http://example.org/demo#tau",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Time of pericenter passage or argument of periapsis provides a starting point for animating an orbital trajectory."
+  } ]
+}, {
+  "@id" : "http://example.org/demo#trueAnomaly",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "True Anomaly is the current position of the orbiting body within the elliptical orbit around a central body.  This orbital element is calculated by an orbital propagator using the other orbital elements."
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/daoneil/ontologies/2018/3/untitled-ontology-178",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ]
+} ]
