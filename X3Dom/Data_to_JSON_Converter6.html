@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Trajectory Data File Reader</title>
+</head>
+<style>
+html {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  background: #333;
+}
+
+#page-wrapper {
+  width: 850px;
+  background: #FFF;
+  padding: 1em;
+  margin: 1em auto;
+  min-height: 300px;
+  border-top: 5px solid #69c773;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+h1 {
+	margin-top: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+#fileDisplayArea {
+  margin-top: 2em;
+  width: 100%;
+  overflow-x: auto;
+}
+</style>
+<body onload="handleFile()">
+<script>
+var dat = new Blob();          // a blob to hold the content of the uploaded file
+var rec = {} ;				   // a record for date, time, and Cartesian coordinates
+var records = new Array() ;    // an array of records  <-- Presently, not used.
+var recCount = 0 ;             // a counter for the records in the array
+var curPos = 0 ;               // current position within the current line of text
+var curChar = "" ;             // current character within the current line of text
+var curEOL = 0 ;               // calculated End Of Line using curPos + linewidth
+var lineWidth = 0;             // number of characters in the line of text
+var totalChar = 0 ;            // Calculated number of characters in the file
+
+function extractData(someText) {
+    var theData = "" ;
+	var currentPosition = 0 ;
+	var maxChar = someText.length ;
+
+   while (theData == "") {
+    if (someText[currentPosition] == " ") {
+	// Find the next non-blank character.
+	   while (someText[currentPosition] == " ") {
+			  currentPosition = currentPosition + 1 ;   
+		} // end while
+	}   // end if
+    else {
+	// Update the global current position.
+	   curPos = curPos + currentPosition ;              
+	   while (someText[currentPosition] != " ") {
+	         theData = theData + someText[currentPosition] ;
+			 currentPosition = currentPosition + 1 ;
+		} // end while
+	  } // end else
+    } // end while
+	
+	return theData ;
+} // end extractData
+
+  function handleFile() {
+		var fileInput = document.getElementById('fileInput');
+		var fileDisplayArea = document.getElementById('fileDisplayArea');
+
+		fileInput.addEventListener('change', function(e) {
+			var file = fileInput.files[0];
+			totalChar = file.size;          // Get the total number of characters.
+			var textType = /text.*/;
+			if (file.type.match(textType)) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+				 	dat = reader.result;    // Get the contents of the file.
+					curChar = dat[0] ;      // Start at the first character
+					while (curChar != "\n") {        // Find the end of line.
+					    lineWidth = lineWidth + 1 ;  // Count characters in line.
+						curChar = dat[lineWidth] ;
+					}	
+					curPos = lineWidth + 1;          // Advance to the next line.					
+					
+					var iNumLines = dat.length/lineWidth ;
+
+					fileDisplayArea.textContent = '{"coordinates":[ \n' ;
+				for (var i = 0; i < iNumLines; i++) { 
+
+					curEOL = curPos + lineWidth ;
+					
+			        rec.date = dat.slice(curPos, curPos+12);
+					curPos = curPos + 12;
+					rec.time = dat.slice(curPos, curPos+12);
+					
+					curPos = curPos + 12 ;
+					
+				if (curPos < totalChar) {  // Have we reached end of the file?
+					rec.X = "" ;
+					rec.X = extractData(dat.slice(curPos, curEOL)) ;
+					curPos = curPos + rec.X.length + 1 ;
+					
+					rec.Y = "" ;
+					rec.Y = extractData(dat.slice(curPos, curEOL)) ;
+					curPos = curPos + rec.Y.length + 1;
+					
+					rec.Z = "" ;
+					rec.Z = extractData(dat.slice(curPos, curEOL)) ;			    
+				
+					recCount = recCount + 1;                                     // not used
+					fileDisplayArea.textContent = fileDisplayArea.textContent +
+											   "{" + '"Date":' + '"' + rec.date + '"' + "," 
+				                                   + '"Time":' + '"' + rec.time + '"' + ","
+												   + '"X":' + rec.X + ","
+												   + '"Y":' + rec.Y +  ","
+												   + '"Z":' + rec.Z  ; 
+					fileDisplayArea.textContent = fileDisplayArea.textContent  + "}, \n";
+				} // end if
+				  
+				   curPos = curEOL + 1 ;
+				} // next
+				var sTraJSON = fileDisplayArea.textContent.toString() ;
+				var iLastCharNum = sTraJSON.length ;
+				
+				sTraJSON = sTraJSON.substring(0,iLastCharNum -3) ;
+				sTraJSON = sTraJSON + "]}" ;
+				
+				fileDisplayArea.textContent = sTraJSON ;
+			} 
+				 reader.readAsText(file) ; 
+
+			} else {
+				fileDisplayArea.innerText = "File not supported!"
+			}
+		});	
+  }
+</script>
+<div id="page-wrapper">
+
+		<h1>Trajectory Fixed Width Data File to JSON Converter</h1>
+		<div>
+			Select a trajectory data file: 
+			<input type="file" id="fileInput">
+		</div>
+		<pre id="fileDisplayArea"></pre>
+
+   <br>
+   <p>
+     This web-app converts a fixed width time-stamped Cartesian coordinate data file generated from NASA's
+	 General Mission Analysis Tool (GMAT) into the JavaScript Object Notation (JSON) format. Click the Browse
+	 button to select a text file. The resulting JSON formatted data will be presented on this web page.
+   </p>
+
+	</div>
+
+</body>
+</html>

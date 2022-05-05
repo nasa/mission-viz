@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<head>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>Trajectory from GMAT</title>
+		<meta name="author" content="Daniel A. O'Neil">
+		<meta name="copyright" content="? Daniel A. O'Neil" />
+	<style>
+	  p.case { clear: both; border-top: 0px; solid: #fff; }
+	</style>
+	<link rel="stylesheet" type="text/css" href="x3dom.css" />
+	<script src="LunarTransferTrajectory.js" type="text/javascript"></script>
+	<script src="LunarOrbit.js" type="text/javascript"></script>
+</head>
+<body onload="initialize()">
+
+<h1>Earth Moon Scenegraph for Depicting Cis-Lunar Trajectories</h1>
+
+	<p class="case"> 
+		<X3D xmlns="http://www.web3d.org/specifications/x3d-namespace" showStat="false" showLog="false" x="0px" y="0px" width="800px" height="600px">
+          <Scene id="cisLunar">
+			<background DEF='bgnd' transparency='0' skyColor='0.0 0.0 0.0' ></background>
+	     <Viewpoint id="bigPicture" position="-0.93 -4.57055 0.64278" orientation="0.98953 -0.13628 -0.04750 1.37925" description="Default View"></Viewpoint>			
+	
+	<Transform id="theCenter" translation="0 0 0">
+	     <Transform id="theMoon" translation="0.825804 2.098752 0.074946" >
+              <Shape>
+                <Appearance>
+	          <Material diffuseColor='0.8 0.8 0.8'></Material>
+                    <ImageTexture url='Moon_Flat.jpg'/>
+                </Appearance>
+                <Sphere radius='0.0265'/> 
+             </Shape>
+			  <Viewpoint id="moonCam" position="-3 1 3" orientation="0 1 0 -0.785" description="Lunar View"></Viewpoint> 
+        </Transform>
+	   <Transform id="satPosition" translation="0 0 0" scale="0.005 0.005 0.005" >
+           <Inline url="TrianaSatellite.x3d"> </Inline>
+		    <Viewpoint id="satCam" position="3 1 15" orientation="0 1 0 0.785" description="Satellite View"></Viewpoint> 
+       </Transform>
+	</Transform>
+	   <Transform id="theEarth" translation="-0.3 0.2 0" rotation="1 0 0 1.57" >  <!-- rotation="0 0 1 0.401426" -->
+	   	   <Transform id="continents" translation="0 0 0" >
+              <Shape>
+                <Appearance>
+				    <Material diffuseColor='1 1 1'></Material>
+                    <ImageTexture url='EarthImage.jpg'/>
+                </Appearance>
+                <Sphere radius='0.1594525'/> <!-- was 0.63781 -->
+             </Shape>
+		   </Transform>
+	   </Transform>
+	   
+	     <directionalLight id="directional" direction='1 0 0' on ="TRUE" intensity='1.0' shadowIntensity='0.1' ambientIntensity='0.333'> </directionalLight> 
+
+          </Scene>
+        </X3D>
+    </p>
+	
+	<p class="case" align="center">
+	
+	<h2><p id="demo"></p></h2>
+
+<script>
+
+/*----------------------------------------------------------------------------------------------*
+ *                            {--- Global variables --}                                         *
+ *----------------------------------------------------------------------------------------------*/
+var epoch = new Date('December 9, 2014');  // start the calendar 
+var step = 0 ;
+var JsonObj = null 
+var simSpeed = 10 ;                    // speed of the lunar orbit and date
+var rotAngle = 0 ;                     // accrued rotation angle for the Earth
+var rotLunar = 0 ;                       // accrued rotation angle for the Moon
+var mission = JSON.parse(trajectory) ;    // Parse the trajectory in the mission file.
+var orbit = JSON.parse(lunarOrbit) ;           // Parse the lunar orbit
+
+var bLaunch = false ;                     // flag that indicates when to launch. Not used
+var xScale = 0.000006 ;
+var yScale = 0.000006;                    // Scaler to normalize the coordinate data.
+var zScale = 0.000006 ;
+
+
+/*--------------------------------------------------------------------------------------------* 
+ *  Functions for adding and manipulating X3D object to the Document Object Model via X3Dom   *
+ *--------------------------------------------------------------------------------------------*/		 
+	
+function drawLocalAxis(body, m) {
+// Purpose: Display orientation axes on the specified entity.
+// Things to do: Refactor this code us usa function to draw an axis.
+   var xAxisCoords =  0 + " " + 0 + " " + 0 + " " + m + " " + 0 + " " + 0 ;
+   var xAxisIndices = 0 + " " + 1 ;
+
+   var yAxisCoords =  0 + " " + 0 + " " + 0 + " " + 0 + " " + m + " " + 0 ;
+   var yAxisIndices = 0 + " " + 1 ;
+
+   var zAxisCoords =  0 + " " + 0 + " " + 0 + " " + 0 + " " + 0 + " " + m ;
+   var zAxisIndices = 0 + " " + 1 ;
+
+   // --------- Draw Y Axis --------------
+   var s = document.createElement('Shape');            // Shape Node
+       s.setAttribute("id", 'localY');
+
+   var app = document.createElement('Appearance');     // Appearance Node
+   var mat = document.createElement('Material');       // Material Node
+       mat.setAttribute("emissiveColor", 1 + " " + 0 + " " + 0);
+    app.appendChild(mat);
+     s.appendChild(app);
+
+   var    yAxisline = document.createElement('IndexedLineSet');
+       yAxisline.setAttribute("coordIndex", yAxisIndices) ;
+   var ycoords = document.createElement('Coordinate');
+       ycoords.setAttribute("point", yAxisCoords);
+		
+       yAxisline.appendChild(ycoords) ;
+       s.appendChild(yAxisline);
+	   
+    var ot = document.getElementById(body);
+        ot.appendChild(s);
+// ------- Draw X Axis ----------------	
+   var sx = document.createElement('Shape');            // Shape Node
+       sx.setAttribute("id", 'localX');
+   var app = document.createElement('Appearance');     // Appearance Node
+   var mat = document.createElement('Material');       // Material Node
+       mat.setAttribute("emissiveColor", 0 + " " + 1 + " " + 0);
+     app.appendChild(mat);
+     sx.appendChild(app);
+
+   var xAxisline = document.createElement('IndexedLineSet');
+       xAxisline.setAttribute("coordIndex", xAxisIndices) ;
+   var xcoords = document.createElement('Coordinate');
+       xcoords.setAttribute("point", xAxisCoords);
+       xAxisline.appendChild(xcoords) ;
+	  sx.appendChild(xAxisline);
+	  
+  var ot = document.getElementById(body);
+      ot.appendChild(sx);
+ 
+ 	// ------- Draw Z Axis ----------------	
+   var sz = document.createElement('Shape');            // Shape Node
+       sz.setAttribute("id", 'localZ');
+   var app = document.createElement('Appearance');     // Appearance Node
+   var mat = document.createElement('Material');       // Material Node
+       mat.setAttribute("emissiveColor", 0 + " " + 0 + " " + 1);
+     app.appendChild(mat);
+     sz.appendChild(app);
+
+   var zAxisline = document.createElement('IndexedLineSet');
+       zAxisline.setAttribute("coordIndex", zAxisIndices) ;
+   var zcoords = document.createElement('Coordinate');
+       zcoords.setAttribute("point", zAxisCoords);
+       zAxisline.appendChild(zcoords) ;
+	  sz.appendChild(zAxisline);
+	  
+  var ot = document.getElementById(body);
+      ot.appendChild(sz);
+}
+/*-------------------------------------------------*
+ *        Animate the X3D objects                  *
+ *-------------------------------------------------*/
+    function showValue(newValue)
+{  // Read a simulation speed setting from a slider control.
+	 simSpeed = newValue * 100;    // was 0.01
+}
+function updateHBPositions() 
+	{  
+	  // updateTheDate() ;            // Display the date progression starting from the current epoch.
+
+	 // Earth rotation rate 
+	  var earthRotationRate = 0.0000727221; // radians/second
+	  
+	   var earthRotationRate = 0.1; // radians/cycle
+	  rotAngle = rotAngle + earthRotationRate  //* simSpeed;
+	 document.getElementById("continents").setAttribute('rotation',0 + " " + 1 + " " + 0 + " " + rotAngle) ;
+	  
+	 // Lunar rotation rate in radians per second 
+	 // var lunarRotationRate = 0.000002664; // radianc/second
+	 var lunarRotationRate = 0.02664; // radianc/second
+	  rotLunar = rotLunar + lunarRotationRate  //* simSpeed ;
+	  document.getElementById("theMoon").setAttribute('rotation',0 + " " + 1 + " " + 0 + " " + rotLunar) ;
+	   
+	  updateRotationStats() ;              // write the number of rotations for the earth and moon
+	  
+	};
+
+ //----------------------------
+   function updateTheDate() 
+   { // Display the simulated date to the right of the model.
+   //  epoch.setTime(epoch.getTime() + simSpeed * 86400)
+	 if (simSpeed == 1) {
+	   epoch.setDate(epoch.getDate() + 1) ;            // At maximum speed, increment calendar by a day for each clock-cycle.
+	 } else {  epoch.setTime(epoch.getTime() + simSpeed * 24 * 3600000) ; }  // 24 hours * milliseconds in an hour * simSpeed 
+
+	 document.getElementById("modelDate").textContent = (epoch.getMonth() + 1) + "-" + epoch.getDate() + "-" + epoch.getFullYear() ;
+   }
+//---------------------------------------------------------------
+function renderTrajectory(spaceObject, name, r, g, b) {
+var segIndex = 0 ;   // segment counter
+var orbitCoords = "" ;
+
+	for (var segment in spaceObject.coordinates) {
+		
+		var s = document.createElement('Shape');            // Shape Node
+		s.setAttribute("id", name + segIndex);
+
+		var app = document.createElement('Appearance');     // Appearance Node
+		var mat = document.createElement('Material');       // Material Node
+		   mat.setAttribute("id", "Mat" + segIndex);
+		   mat.setAttribute("diffuseColor", r + " " + g + " " + b);
+		   mat.setAttribute("emissiveColor", r + " " + g + " " + b);
+		app.appendChild(mat);
+		s.appendChild(app);
+		
+		var segCoords = [spaceObject.coordinates[segment].X * xScale, 
+		                 spaceObject.coordinates[segment].Y * yScale, 
+						 spaceObject.coordinates[segment].Z * zScale] ;
+
+		orbitCoords = orbitCoords + segCoords[0]  + " " + segCoords[1]  + " " + segCoords[2]  + " " ;
+		
+		var line = document.createElement('IndexedLineSet');
+        line.setAttribute("coordIndex", segIndex);
+		var coords = document.createElement('Coordinate');
+		coords.setAttribute("point", orbitCoords);
+		
+		line.appendChild(coords) ;
+		
+		s.appendChild(line);
+		var ot = document.getElementById('theCenter');
+        ot.appendChild(s);
+		
+		segIndex = segIndex + 1 ;		
+	 }
+}
+//----------  Initialize the simulation ----------------------
+function initialize() {
+
+    //   showValue(1) ;                     // Ensure the start of the simulation
+	   drawLocalAxis("theEarth", 1.0) ;
+	   drawLocalAxis("theMoon", 0.5) ;
+
+    //--- Position the satellite model ---
+	 var pos = [mission.coordinates[0].X * xScale, 
+	            mission.coordinates[0].Y * yScale, 
+				mission.coordinates[0].Z * zScale]
+	  
+	 document.getElementById("satPosition").setAttribute('translation', pos[0] + " " + pos[1] + " " + pos[2]) ;
+	 
+	 //--- Position the Moon model --------
+	 pos = [orbit.coordinates[0].X * xScale, 
+	            orbit.coordinates[0].Y * yScale, 
+				orbit.coordinates[0].Z * zScale]
+	 document.getElementById("theMoon").setAttribute('translation', pos[0] + " " + pos[1] + " " + pos[2]) ;
+	 
+	 // Render the trajectories:
+	   renderTrajectory(mission, "traj", 1, 0, 0) ;
+	   renderTrajectory(orbit, "orb", 0.7, 0.7, 0.7) ;
+	   
+	   document.getElementById('bigPicture').setAttribute('set_bind','true')
+   };
+
+   //--- Step through the JSON data to move objects. ---
+   function updatePosition(spaceObject, name)   {
+     pos = [spaceObject.coordinates[step].X * xScale, spaceObject.coordinates[step].Y * yScale, spaceObject.coordinates[step].Z * zScale ] ;
+     xPos = pos[0] ;
+	 yPos = pos[1] ;
+	 zPos = pos[2] ;
+      document.getElementById(name).setAttribute('translation', xPos + " " + yPos + " " + zPos);
+	
+   document.getElementById("demo").textContent =
+      "Date:  " + spaceObject.coordinates[step].Date + "  Time: " + spaceObject.coordinates[step].Time;
+	 
+    step = step + 1 ;
+ }; 
+   function updateSatellitePosition(spaceObject, name)   {
+     pos = [spaceObject.coordinates[step].X * xScale, spaceObject.coordinates[step].Y * yScale, spaceObject.coordinates[step].Z * zScale ] ;
+     xPos = pos[0] ;
+	 yPos = pos[1] ;
+	 zPos = pos[2] ;
+      document.getElementById(name).setAttribute('translation', xPos + " " + yPos + " " + zPos);
+ 
+     document.getElementById("demo").textContent =
+     "Date:  " + spaceObject.coordinates[step].Date + "  Time: " + spaceObject.coordinates[step].Time;
+
+     step = step + 1 ;
+ }; 
+
+ function updateRotationStats() {
+   var earthRotations = rotAngle / 6.28 ;
+   var lunarRotations = rotLunar / 6.28 ;
+   
+   document.getElementById("rotationStats").textContent =
+   "Earth rotations =  " + Math.abs(earthRotations.toFixed(2)) + "  Lunar Rotations = " + Math.abs(lunarRotations.toFixed(2));
+ 
+ }
+ //-------- Reset the simulation -------------------------
+ function resetPosition() {
+    step = 0 ;
+	pos = [mission.coordinates[step].X * xScale,   
+	       mission.coordinates[step].Y * yScale, 
+		   mission.coordinates[step].Z * zScale] ;
+	  var Xpos = pos[0] ;
+	  var Ypos = pos[1] ;
+	  var Zpos = pos[2] ;
+      document.getElementById('satPosition').setAttribute('translation', Xpos + " " + Ypos + " " + Zpos);
+ } ;
+ 
+ //-------- Start the simulation --------------------------
+ function startUpdate() {
+ 	 setInterval(function () {updateHBPositions() }, 100);
+ 	 setInterval(function () {updatePosition(mission,"satPosition") }, 100);
+	 setInterval(function () {updatePosition(orbit,"theMoon") }, 100);
+ }
+ 
+ </script>
+<script type="text/javascript" src="x3dom.js"></script>
+<!-- <input type="file" id="files" name="files[]" multiple /> -->
+<input type="button" id="start" value="Start" onclick="startUpdate();" />
+<input type="button" id="reset" value="Reset" onclick="resetPosition();" />
+<button id="theBigPicture" onclick="document.getElementById('bigPicture').setAttribute('set_bind','true');">Big Picture</button>
+<button id="theSatCam" onclick="document.getElementById('satCam').setAttribute('set_bind','true');">View Satellite</button>
+<button id="theSatCam" onclick="document.getElementById('moonCam').setAttribute('set_bind','true');">View Moon</button>
+<p>
+<!-- Simulation Speed <br><input type="range" id="myRange" name="points" min="1" max="100" value="1" step="1" onchange="showValue(this.value)"/><br>&nbsp; &nbsp; -->
+
+   <p><p>
+   <p id="rotationStats"> </p>
+   <br>
+  	<p style="width:800px">Using NASA's General Mission Analysis Tool (GMAT), Cartesian coordinates were generated for a trajectory from the Earth to the Moon. The interactive visualization
+	depicts the Earth, Moon, a space probe, and the trajectory. Buttons beneath the visualization include Start, Reset, Big Picture, View Satellite, and View Moon. Click on the Start
+	button to animate the movement of the space probe along the trajectory. The Reset button puts the space probe in the initial position. The View Satellite and View Moon buttons 
+	changes the point of view. The view can be panned with a left click and drag and the middle mouse button enables zoom-in and zoom-out. The Big Picture button resets the view to
+	show the entire trajectory.
+	</p>
+</body>
+</html>

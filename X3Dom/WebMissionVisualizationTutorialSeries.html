@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+<title>Web-based Space Mission Visualization</title>
+</head>
+<style>
+div {
+    margin-top: 30px;
+    margin-left: 150px;
+}
+table, th, td {
+   padding: 10px;
+   text-align: center;
+   border: 1px solid black;
+}
+
+</style>
+<script>
+ function showSimpleTrajectory() {
+       document.getElementById("demoArea").innerHTML= "<object height='720' width='800' data='Trajectory_JSON.html' type='text/html'></object>" ;
+   };
+ function showHohmannTransfer() {
+       document.getElementById("demoArea").innerHTML= '<object height="780" width="800" data="AHohmannTrajectory_JSON.html" type="text/html"></object>' ;
+   };
+ function showJSONConverter() {
+       document.getElementById("demoArea").innerHTML= '<object height="700" width="900" data="Data_to_JSON_Converter6.html" type="text/html"></object>' ;
+   };
+ function showJSON_Reader() {
+       document.getElementById("demoArea").innerHTML= '<object height="800" width="900" data="JSON_Trajectory_Reader_with_Model_appendix.html" type="text/html"></object>' ;
+   };  
+   
+</script>
+
+<body>
+<div>
+<H1>A Three Part Tutorial and a Vision for Creating<br> 
+a Web-based Mission Visualization System</H1>
+<table>
+<tr><td>
+<p>Part 1 of the tutorial series explains how to generate
+<br>a trajectory data file with the General Mission
+<br>Analysis Tool(GMAT) and to produce a simple 
+<br>web-based mission visualization.</p></td>
+<td><a href="20150918_WebVisualization_of_a_GMAT_GeneratedTrajectory_Part1.pdf">Part 1</a></td>
+<td><button onclick="showSimpleTrajectory()">Demo 1</button></td><td id="demoArea" rowspan="5">Select a demonstration.</td></tr>
+
+<tr><td>
+<p>Part 2 of the tutorial series explains how to 
+<br>apply a texture map to an X3D sphere and animate
+<br>an X3D object to follow the GMAT generated trajectory.</p></td>
+<td><a href="20150923_WebVisualization_of_a_GMAT_generatedTrajectory_Part2.pdf">Part 2</a></td>
+<td><button onclick="showHohmannTransfer()">Demo 2</button></td></tr>
+
+<tr><td>
+<p>Part 3 of the tutorial series explains how to 
+<br>write a JavaScript Object Notation (JSON) converter,
+<br>import an X3D model, and use the HTML5 Filereader API.
+<br>Before starting Demo 3, copy and paste the Input Data 
+<br>into a text editor, save the file with a *.txt 
+<br>extension, and upload it with the browse button Demo 3.</p></td>
+<td><a href="20151102_WebVisualization_of_a_GMAT_generatedTrajectory_Part3.pdf">Part 3</a><p><a href="MolniyaOrbit.txt">Input Data</a></p></td>
+<td><button onclick="showJSONConverter()">Demo 3</button></td></tr>
+
+<tr><td>
+<p>Before starting Demo 4, copy and paste the Output Data 
+<br>into a text editor, save the a file with a *.json 
+<br>extension and upload it with the Browse button on Demo 4.</p></td>
+<td><a href="MolniyaOrbit.json">Output Data</a></p></td>
+<td><button onclick="showJSON_Reader()()">Demo 4</button></td></tr>
+
+<tr><td>
+<p>A vision for a Web-based Mission Visualization System 
+<br>(WMVS)involves provding tutorials and example source code
+<br>to a community of developers and space mission designers. 
+<br>This document presents a vision, use cases, desirable
+<br>functions and features, and needed skills for a WMVS. </p></td>
+<td colspan="2"><a href="20150611_WebBasedMissionVisualizationSystem.pdf">A Vision for a WMVS</a></p></td>
+</table>
+</div>
+</body>
+</html>

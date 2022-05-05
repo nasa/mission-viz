@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<head>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>Trajectory from GMAT</title>
+		<meta name="author" content="Daniel A. O'Neil">
+		<meta name="copyright" content="? Daniel A. O'Neil" />
+	<style>
+	  p.case { clear: both; border-top: 0px; solid: #fff; }
+	</style>
+	<link rel="stylesheet" type="text/css" href="x3dom.css" />
+	<script src="missionfile.js" type="text/javascript"></script>
+</head>
+<body onload="startUpdate()">
+
+<h1>Prototype Web Visualization of a GMAT Generated Trajectory</h1>
+
+	<p class="case"> 
+		<X3D xmlns="http://www.web3d.org/specifications/x3d-namespace" showStat="false" showLog="false" x="0px" y="0px" width="800px" height="600px">
+          <Scene>
+			<background DEF='bgnd' transparency='0' skyColor='0.0 0.0 0.0' ></background>
+	   <Transform id="theEarth" translation="0 0 0">
+              <Shape>
+                <Appearance>
+                    <ImageTexture url='EarthImage.jpg'/>					
+                </Appearance>
+                <Sphere radius='0.65'/>
+             </Shape>
+		   </Transform> 
+		   <Viewpoint fieldOfView="0.785398" position="6 5.5 6.5" orientation="1 -1 0 -0.785"  description=""/>
+          </Scene>
+        </X3D>
+    </p>
+	
+	<p class="case" align="center">
+	
+	<p><H2><p id="demo"></p></H2></p>
+
+<script>
+
+var mission = JSON.parse(trajectory) ;    // Parse the trajectory in the mission file.
+var step = 0 ;
+
+function startUpdate() {
+// Generate line segments from points around the trajectory of the orbiting objects.
+	   var segIndex = 0 ;   // segment counter
+	   var orbitCoords = "" ;
+	for (var segment in mission.coordinates) {
+		
+		var s = document.createElement('Shape');            // Shape Node
+		s.setAttribute("id", "segment" + segIndex);
+
+		var app = document.createElement('Appearance');     // Appearance Node
+		var mat = document.createElement('Material');       // Material Node
+		   mat.setAttribute("id", "Mat" + segIndex);
+		   mat.setAttribute("diffuseColor", 1 + " " + 0 + " " + 0);
+		   mat.setAttribute("emissiveColor", 1 + " " + 0 + " " + 0.3);
+		app.appendChild(mat);
+		s.appendChild(app);
+		
+		var segCoords = [mission.coordinates[segment].X/10000, mission.coordinates[segment].Y/10000, mission.coordinates[segment].Z/10000] ;
+		// console.log("x  " + segCoords[0] + "  y  " + segCoords[1] + "  z  " + segCoords[2]) ;
+		
+		orbitCoords = orbitCoords + segCoords[0]  + " " + segCoords[1]  + " " + segCoords[2]  + " " ;
+		
+		var line = document.createElement('IndexedLineSet');
+        line.setAttribute("coordIndex", segIndex);
+		var coords = document.createElement('Coordinate');
+		coords.setAttribute("point", orbitCoords);
+		
+		line.appendChild(coords) ;
+		
+		s.appendChild(line);
+		var ot = document.getElementById('theEarth');
+        ot.appendChild(s);
+		
+		segIndex = segIndex + 1 ;		
+	 }
+  
+    /*-----------------------------
+	 *  Create a satellite model 
+	 *----------------------------*/
+	 var pos = [mission.coordinates[0].X/10000, mission.coordinates[0].Y/10000, mission.coordinates[0].Z/10000] 
+	  var t = document.createElement('Transform');
+        t.setAttribute("translation", pos[0] + " " + pos[1] + " " + pos[2] );
+        t.setAttribute("id", 'satPosition');
+		
+		var satellite = document.createElement('Shape');        // Shape Node for satellite
+		satellite.setAttribute("id", "satellite");
+
+		var satapp = document.createElement('Appearance');     // Appearance Node
+		var satmat = document.createElement('Material');       // Material Node
+		   satmat.setAttribute("id", "SatMat");
+		   satmat.setAttribute("diffuseColor", 0 + " " + 1 + " " + 0);
+		   satmat.setAttribute("emissiveColor", 0 + " " + 1 + " " + 0.3);
+		satapp.appendChild(satmat);
+		satellite.appendChild(satapp);
+		
+		var satmodel = document.createElement('Box');
+		satmodel.setAttribute("size", 0.2 + " " + 0.2 + " " + 0.2);
+		// satellite.setAttribute("id", "sat1");
+		satellite.appendChild(satmodel);
+		t.appendChild(satellite) ;
+		
+		var objsat = document.getElementById('theEarth');
+        objsat.appendChild(t);
+
+		setInterval(function () {updatePosition() }, 50);
+   };
+
+   function updatePosition()   {
+ // for (segment in mission.coordinates) {
+  //    pos = [mission.coordinates[segment].X/10000, mission.coordinates[segment].Y/10000, mission.coordinates[segment].Z/10000] ;
+     pos = [mission.coordinates[step].X/10000, mission.coordinates[step].Y/10000, mission.coordinates[step].Z/10000] ;
+	  var Xpos = pos[0] ;
+	  var Ypos = pos[1] ;
+	  var Zpos = pos[2] ;
+      document.getElementById('satPosition').setAttribute('translation', Xpos + " " + Ypos + " " + Zpos);
+	  console.log("x  " + Xpos + "  y  " + Ypos + "  z  " + Zpos) ;
+		
+document.getElementById("demo").textContent = 
+                        "Date:  " + mission.coordinates[step].Date + "  Time: " + mission.coordinates[step].Time;
+ 
+ //  }
+ step = step + 1 ;
+ }; 
+ 
+ function resetPosition() {
+    step = 0 ;
+	pos = [mission.coordinates[step].X/10000, mission.coordinates[step].Y/10000, mission.coordinates[step].Z/10000] ;
+	  var Xpos = pos[0] ;
+	  var Ypos = pos[1] ;
+	  var Zpos = pos[2] ;
+      document.getElementById('satPosition').setAttribute('translation', Xpos + " " + Ypos + " " + Zpos);
+	  
+	  setInterval(function () {updatePosition() }, 60);
+ } ;
+ </script>
+<script type="text/javascript" src="x3dom.js"></script>
+<input type="button" id="reset" value="Reset" onclick="resetPosition();" />
+<br>
+<p style="width:800px">
+Using time-stamped Cartesian coordinates generated from NASA's General Mission Analysis Tool (GMAT), this interactive visualization
+depicts a Hohmann transfer maneuver from a low orbit to a higher orbit. When the page loads, an animated green cube moves along the trajectory.
+A Reset button repositions the cube to the start of trajectory and restarts the animation. 
+</p>
+</body>
+</html>
